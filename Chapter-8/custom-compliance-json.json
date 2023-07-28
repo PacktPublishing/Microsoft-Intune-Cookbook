@@ -1,0 +1,60 @@
+{
+"Rules":[ 
+    { 
+       "SettingName":"Manufacturer",
+       "Operator":"IsEquals",
+       "DataType":"String",
+       "Operand":"Dell",
+       "MoreInfoUrl":"https://www.google.com",
+       "RemediationStrings":[ 
+          { 
+             "Language":"en_US",
+             "Title":"This machine is not a Dell.",
+             "Description": "We only support Dell devices, please contact us for more information.  You are on an {ActualValue}"
+          }
+       ]
+    },
+    { 
+      "SettingName":"DomainFirewall",
+      "Operator":"IsEquals",
+      "DataType":"String",
+      "Operand":"True",
+      "MoreInfoUrl":"https://support.microsoft.com/en-us/windows/turn-microsoft-defender-firewall-on-or-off-ec0844f7-aebd-0583-67fe-601ecf5d774f",
+      "RemediationStrings":[ 
+         { 
+            "Language": "en_US",
+            "Title": "Domain Firewall is Off",
+            "Description": "Your domain firewall is switched off, please re-enable."
+         }
+      ]
+   },
+   { 
+      "SettingName":"NoActiveMalware",
+      "Operator":"IsEquals",
+      "DataType":"String",
+      "Operand":"True",
+      "MoreInfoUrl":"https://support.microsoft.com/en-us/windows/stay-protected-with-windows-security-2ae0363d-0ada-c064-8b56-6a39afb6a963",
+      "RemediationStrings":[ 
+         { 
+            "Language": "en_US",
+            "Title": "Active Malware Detected",
+            "Description": "Active Malware detected, please remediate."
+         }
+      ]
+   },
+   { 
+      "SettingName":"Bitlocker",
+      "Operator":"IsEquals",
+      "DataType":"String",
+      "Operand":"True",
+      "MoreInfoUrl":"https://support.microsoft.com/en-us/windows/turn-on-device-encryption-0c453637-bc88-5f74-5105-741561aae838",
+      "RemediationStrings":[ 
+         { 
+            "Language": "en_US",
+            "Title": "Unencrypted",
+            "Description": "Your device is not fully encrypted, please encrypt."
+         }
+      ]
+   }
+ ]
+}
