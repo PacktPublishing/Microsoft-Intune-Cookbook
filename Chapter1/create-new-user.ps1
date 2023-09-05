@@ -4,6 +4,7 @@ $surname = "One"
 $usageLocation = "GB"
 $mailNickname = "user1"
 $password = "PASSWORD HERE"
+$domainname = "DOMAIN HERE"
 
 $json = @"
 {
@@ -17,7 +18,7 @@ $json = @"
 	},
 	"surname": "$surname",
 	"usageLocation": "$usageLocation",
-	"userPrincipalName": "$mailnickname@intunecookbook.onmicrosoft.com"
+	"userPrincipalName": "$mailnickname@$domainname"
 }
 "@
 

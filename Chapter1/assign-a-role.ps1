@@ -1,5 +1,12 @@
+
 $rolename = "Azure AD Joined Device Local Administrator"
 $user = "test@test.onmicrosoft.com"
+
+
+
+Install-Module Microsoft.Graph.DeviceManagement.Enrolment -Scope CurrentUser -Repository PSGallery -Force
+
+Import-Module Microsoft.Graph.DeviceManagement.Enrolment
 
 $userid = (Invoke-MgGraphRequest -Uri "https://graph.microsoft.com/beta/users/$user" -Method Get -OutputType PSObject).id
 $uri = "https://graph.microsoft.com/beta/roleManagement/directory/roleDefinitions"
