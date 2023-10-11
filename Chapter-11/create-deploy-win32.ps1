@@ -992,7 +992,7 @@ function new-installscript {
         $installstring
     )
     $install = @"
-&.\$installstring
+$installstring
 "@
     return $install
 
@@ -1004,7 +1004,7 @@ function new-uninstallscript {
         $uninstallstring
     )
     $uninstall = @"
-&.\$uninstallstring
+$uninstallstring
 "@
     return $uninstall
 
