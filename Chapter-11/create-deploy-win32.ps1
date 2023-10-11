@@ -1094,7 +1094,7 @@ function new-win32app {
     $apppath = "$path\$appid"
     new-item -Path $apppath -ItemType Directory -Force
 
-    Invoke-WebRequest -url $appdownloadurl -outfile $appoutput
+    Invoke-WebRequest -uri $appdownloadurl -outfile $appoutput
 
     ##Create Groups
     $installgroup = new-aadgroups -appid $appid -appname $appname -grouptype "Install"
