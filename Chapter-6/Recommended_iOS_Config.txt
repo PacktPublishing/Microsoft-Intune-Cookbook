@@ -1,0 +1,47 @@
+•	Block viewing corporate documents in unmanaged apps
+•	Treat AirDrop as an unmanaged destination
+•	Block viewing non-corporate documents in corporate apps
+•	Allow copy/paste to be affected by managed open-in
+•	Block in-app purchases
+•	Block App store 
+•	Block Game Center
+•	Block access to network drive in Files app
+•	Block Siri while device is locked
+•	Require Safari fraud warnings
+•	Block internet search results from Spotlight
+•	Block Safari pop-ups
+•	Block Apple News
+•	Block Apple Books
+•	Block Podcasts
+•	Block Find My Friends 
+•	Block user modification to the Find My Friends settings
+•	Block removal of system apps from device
+•	Block managed apps from storing data in iCloud
+•	Block iCloud Photos sync
+•	Block iCloud Photo Library
+•	Block My Photo Stream
+•	Block Handoff
+•	Block iCloud backup
+•	Block iCloud document and data sync
+•	Block iCloud Keychain sync
+•	Block iCloud Private Relay
+•	Force Apple Watch wrist detection
+•	Block AirDrop
+•	Block pairing with non-Configurator hosts
+•	Block storage of AirPrint credentials in Keychain
+•	Block setting up new nearby devices
+•	Block access to USB drive in Files app
+•	Block users from erasing all content and settings on device
+•	Block configuration profile changes
+•	Block removing apps
+•	Block modification of account settings
+•	Block Control Center access in lock screen
+•	Block Notification Center access in lock screen
+•	Block Today view in lock screen
+•	Block Wallet notifications in lock screen
+•	Require password
+•	Block simple passwords
+•	Block password AutoFill
+•	Block password proximity requests
+•	Block password sharing
+•	Require Touch ID or Face ID authentication for AutoFill of password or credit card information
