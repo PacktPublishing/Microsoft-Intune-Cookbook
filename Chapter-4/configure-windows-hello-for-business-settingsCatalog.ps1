@@ -171,7 +171,7 @@ $json = @"
 }
 "@
 
-$policy = Invoke-MgGraphRequest -Uri $url -Method Post -Body $body -ContentType "application/json" -OutputType PSObject
+$policy = Invoke-MgGraphRequest -Uri $settingsurl -Method Post -Body $json -ContentType "application/json" -OutputType PSObject
 
 $policyid = $policy.id
 
