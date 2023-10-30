@@ -180,7 +180,7 @@ $pilotpolicyid = $pilotpolicy.id
 
 
 
-$broadassignurl = "https://graph.microsoft.com//beta/deviceManagement/deviceConfigurations/$broadpolicyid/assign"
+$broadassignurl = "https://graph.microsoft.com/beta/deviceManagement/deviceConfigurations/$broadpolicyid/assign"
 $vipassignurl = "https://graph.microsoft.com//beta/deviceManagement/deviceConfigurations/$vippolicyid/assign"
 $pilotassignurl = "https://graph.microsoft.com//beta/deviceManagement/deviceConfigurations/$pilotpolicyid/assign"
 $previewassignurl = "https://graph.microsoft.com//beta/deviceManagement/deviceConfigurations/$previewpolicyid/assign"
