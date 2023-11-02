@@ -2,10 +2,14 @@ $groupid = "0000000000000000000000000"
 
 $policyurl = "https://graph.microsoft.com/beta/deviceManagement/configurationPolicies"
 
+$name = "Windows Security Experience"
+
+$description = "UI Settings"
+
 $policyjson = @"
 {
-	"description": "UI Settings",
-	"name": "Windows Security Experience",
+	"description": $description,
+	"name": $name,
 	"platforms": "windows10",
 	"roleScopeTagIds": [
 		"0"
