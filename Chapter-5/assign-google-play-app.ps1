@@ -27,4 +27,4 @@ $json = @"
 }
 "@
 
-Invoke-MgGraphRequest -Url $url -Method Post -Body $json -ContentType "application/json"
+Invoke-MgGraphRequest -Uri $url -Method Post -Body $json -ContentType "application/json"

@@ -21,13 +21,13 @@ $json = @"
 }
 "@
 
-$androidprofile = Invoke-MgGraphRequest -Url $url -Method Post -Json $json
+$androidprofile = Invoke-MgGraphRequest -Uri $url -Method Post -Body $json
 
 $profileid = $androidprofile.id
 
 $tokenurl = "https://graph.microsoft.com/beta/deviceManagement/androidDeviceOwnerEnrollmentProfiles/$profileid"
 
-$androidtokendetails = Invoke-MgGraphRequest -Url $tokenurl -Method Get
+$androidtokendetails = Invoke-MgGraphRequest -Uri $tokenurl -Method Get
 
 $qrbase64 = ($androidtokendetails.qrcodeimage).value
 
