@@ -1,13 +1,13 @@
 # Community Blogs
 
-| AskAresh | [https://askaresh.com](https://askaresh.com/) |
-| Think Deploy Blog | [https://blog.lenovocdrt.com/](https://blog.lenovocdrt.com/) |
-| MINDCORE BLOG | [https://blog.mindcore.dk/](https://blog.mindcore.dk/) |
-| sky made simple | [https://blog.skymadesimple.io/](https://blog.skymadesimple.io/) |
-| Thomas Marcussen | [https://blog.thomasmarcussen.com/](https://blog.thomasmarcussen.com/) |
-| Brooks Peppin's Blog | [https://brookspeppin.com](https://brookspeppin.com/) |
-| Call4Cloud | [https://call4cloud.nl](https://call4cloud.nl/) |
-| CCMEXEC.COM Enterprise Mobility | [https://ccmexec.com/](https://ccmexec.com/) |
+| AskAresh | [https://askaresh.com](https://askaresh.com/) |\
+| Think Deploy Blog | [https://blog.lenovocdrt.com/](https://blog.lenovocdrt.com/) |\
+| MINDCORE BLOG | [https://blog.mindcore.dk/](https://blog.mindcore.dk/) |\
+| sky made simple | [https://blog.skymadesimple.io/](https://blog.skymadesimple.io/) |\
+| Thomas Marcussen | [https://blog.thomasmarcussen.com/](https://blog.thomasmarcussen.com/) |\
+| Brooks Peppin's Blog | [https://brookspeppin.com](https://brookspeppin.com/) |\
+| Call4Cloud | [https://call4cloud.nl](https://call4cloud.nl/) |\
+| CCMEXEC.COM Enterprise Mobility | [https://ccmexec.com/](https://ccmexec.com/) |\
 | Moe Kinani | [https://cloudbymoe.com](https://cloudbymoe.com/) |
 | Conditional Access | [https://conditionalaccess.uk/](https://conditionalaccess.uk/) |
 | Endpoint Cave | [https://endpointcave.com/blog/](https://endpointcave.com/blog/) |
