@@ -8,8 +8,8 @@ $description = "UI Settings"
 
 $policyjson = @"
 {
-	"description": $description,
-	"name": $name,
+	"description": "$description",
+	"name": "$name",
 	"platforms": "windows10",
 	"roleScopeTagIds": [
 		"0"
