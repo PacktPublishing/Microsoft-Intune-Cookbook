@@ -207,7 +207,10 @@ $outputarray2 | Out-GridView
 }
 
 Remove-Item $tempfilepath
-Remove-Item $tempfilepath4
+
+if (Test-Path $tempfilepath4) {
+    Remove-Item $tempfilepath4
+}
 $allrows = $parsedData.TotalRowCount
 $n = 0
 while ($n -lt $allrows) {
