@@ -105,8 +105,15 @@ $result = $form.ShowDialog()
 if ($result -eq [System.Windows.Forms.DialogResult]::OK) {
     # Export code here
     $selectedoutput | export-csv $exportpath
+    write-host "File exported to $exportpath"
 } elseif ($result -eq [System.Windows.Forms.DialogResult]::Cancel) {
     # View code here
+    ##Check if empty
+    if ($selectedoutput -eq $null) {
+       write-host "No failures for this user."
+    }
+    else {
 $selectedoutput | Out-GridView
+    }
 }
 

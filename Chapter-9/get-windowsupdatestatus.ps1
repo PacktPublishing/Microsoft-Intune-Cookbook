@@ -231,6 +231,7 @@ $result = $form.ShowDialog()
 if ($result -eq [System.Windows.Forms.DialogResult]::OK) {
     # Export code here
     $outputarray | export-csv $exportpath -NoTypeInformation
+    write-host "File exported to $exportpath"
 } elseif ($result -eq [System.Windows.Forms.DialogResult]::Cancel) {
     # View code here
     $outputarray | Out-GridView
@@ -281,6 +282,7 @@ $result = $form.ShowDialog()
 if ($result -eq [System.Windows.Forms.DialogResult]::OK) {
     # Export code here
     $selectedoutput | export-csv $exportpath2 -NoTypeInformation
+    write-host "File exported to $exportpath2"
 } elseif ($result -eq [System.Windows.Forms.DialogResult]::Cancel) {
     # View code here
     $selectedoutput | Out-GridView
