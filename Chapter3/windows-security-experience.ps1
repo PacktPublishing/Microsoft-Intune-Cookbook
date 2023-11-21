@@ -1,11 +1,21 @@
+# Define the group ID. This is likely a placeholder and should be replaced with a valid ID.
 $groupid = "0000000000000000000000000"
+Write-Output "Group ID: $groupid"
 
+# Define the URL for the Microsoft Graph API endpoint for device management configuration policies.
 $policyurl = "https://graph.microsoft.com/beta/deviceManagement/configurationPolicies"
+Write-Output "Policy URL: $policyurl"
 
+# Define the name of the policy.
 $name = "Windows Security Experience"
+Write-Output "Policy Name: $name"
 
+# Define the description of the policy.
 $description = "UI Settings"
+Write-Output "Policy Description: $description"
 
+##Update the JSON
+write-host "Populating JSON"
 $policyjson = @"
 {
 	"description": "$description",
@@ -291,22 +301,33 @@ $policyjson = @"
 	}
 }
 "@
+write-host "JSON Populated"
 
+# Invoke a POST request to the Microsoft Graph API with the policy JSON data
 $policy = Invoke-MgGraphRequest -Method POST -Uri $policyurl -Body $policyjson -ContentType "application/json" -OutputType PSObject
 
+# Extract the policy ID from the response
 $policyid = $policy.id
+Write-Output "Policy ID: $policyid"
+
+# Define the URL for the assignment endpoint of the Microsoft Graph API
 $assignurl = "https://graph.microsoft.com/beta/deviceManagement/configurationPolicies/$policyid/assign"
+Write-Output "Assignment URL: $assignurl"
+
+# Define the JSON data for the assignment request
 $assignjson = @"
 {
-	"assignments": [
-		{
-			"target": {
-				"@odata.type": "#microsoft.graph.groupAssignmentTarget",
-				"groupId": "$groupid"
-			}
-		}
-	]
+    "assignments": [
+        {
+            "target": {
+                "@odata.type": "#microsoft.graph.groupAssignmentTarget",
+                "groupId": "$groupid"
+            }
+        }
+    ]
 }
 "@
+Write-Output "Assignment JSON: $assignjson"
 
+# Invoke a POST request to the Microsoft Graph API with the assignment JSON data
 Invoke-MgGraphRequest -Method POST -Uri $assignurl -Body $assignjson -ContentType "application/json"

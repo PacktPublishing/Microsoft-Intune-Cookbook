@@ -5,6 +5,7 @@ $posturl = "https://graph.microsoft.com/beta/deviceAppManagement/windowsManageme
 $geturl = "https://graph.microsoft.com/beta/deviceAppManagement/windowsManagementApp/"
 
 ##Check if aleady enabled
+write-host "Checking if managed installer is enabled"
 
 $checkmanagedinstaller = Invoke-MgGraphRequest -Method GET -Uri $geturl -OutputType PSObject
 
@@ -18,6 +19,7 @@ else {
 }
 
 ##Add Profile
+write-host "Adding Profile"
 $url = "https://graph.microsoft.com/beta/deviceManagement/configurationPolicies"
 $name = "Application Control"
 $description = "Application Control Policy"
@@ -217,25 +219,35 @@ $json = @"
 }
 "@
 }
-
+write-host "JSON Populated"
 
 ##Create the policy
-
+write-host "Creating policy"
 $policy = Invoke-MgGraphRequest -Uri $url -Method POST -Body $json -OutputType PSObject -ContentType "application/json"
+write-host "Policy Created"
 
+# Extract the policy ID from the response
 $policyid = $policy.id
+Write-Output "Policy ID: $policyid"
 
-##Assign the policy
+# Define the URL for the assignment endpoint of the Microsoft Graph API
 $assignurl = "https://graph.microsoft.com/beta/deviceManagement/configurationPolicies/$policyid/assign"
+Write-Output "Assignment URL: $assignurl"
+
+# Define the JSON data for the assignment request
 $assignjson = @"
 {
-	"assignments": [
-		{
-			"target": {
-				"@odata.type": "#microsoft.graph.groupAssignmentTarget",
-				"groupId": "$groupid"
-			}
-		}
-	]
+    "assignments": [
+        {
+            "target": {
+                "@odata.type": "#microsoft.graph.groupAssignmentTarget",
+                "groupId": "$groupid"
+            }
+        }
+    ]
 }
 "@
+Write-Output "Assignment JSON: $assignjson"
+
+# Invoke a POST request to the Microsoft Graph API with the assignment JSON data
+Invoke-MgGraphRequest -Method POST -Uri $assignurl -Body $assignjson -ContentType "application/json"

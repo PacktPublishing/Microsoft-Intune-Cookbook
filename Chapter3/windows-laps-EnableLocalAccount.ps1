@@ -1,7 +1,11 @@
+##Set the account name
 $accountname = ""
 
 ##Enable Local Admin Account
 $createurl = "https://graph.microsoft.com/beta/deviceManagement/configurationPolicies"
+
+##Populate the JSON
+write-host "Populating JSON"
 $createjson = @"
 {
 	"description": "Enable and Rename account",
@@ -38,20 +42,34 @@ $createjson = @"
 	"technologies": "mdm"
 }
 "@
-$createpolicy = Invoke-MgGraphRequest -Method POST -Uri $createurl -Body $createjson -OutputType PSObject -ContentType "application/json"
-$createpolicyid = $createpolicy.id
+write-host "JSON Populated"
 
+##Create the policy
+write-host "Creating Policy"
+$createpolicy = Invoke-MgGraphRequest -Method POST -Uri $createurl -Body $createjson -OutputType PSObject -ContentType "application/json"
+write-host "Policy Created"
+
+# Extract the policy ID from the created policy
+$createpolicyid = $createpolicy.id
+Write-Output "Created Policy ID: $createpolicyid"
+
+# Define the URL for the assignment endpoint of the Microsoft Graph API for the created policy
 $createassignurl = "https://graph.microsoft.com/beta/deviceManagement/configurationPolicies/$createpolicyid/assign"
+Write-Output "Created Assignment URL: $createassignurl"
+
+# Define the JSON data for the created policy assignment request
 $createassignjson = @"
 {
-	"assignments": [
-		{
-			"target": {
-				"@odata.type": "#microsoft.graph.allDevicesAssignmentTarget"
-			}
-		}
-	]
+    "assignments": [
+        {
+            "target": {
+                "@odata.type": "#microsoft.graph.allDevicesAssignmentTarget"
+            }
+        }
+    ]
 }
 "@
-Invoke-MgGraphRequest -Method POST -Uri $createassignurl -Body $createassignjson -ContentType "application/json" -OutputType PSObject
+Write-Output "Created Assignment JSON: $createassignjson"
 
+# Invoke a POST request to the Microsoft Graph API with the created assignment JSON data
+Invoke-MgGraphRequest -Method POST -Uri $createassignurl -Body $createassignjson -ContentType "application/json" -OutputType PSObject

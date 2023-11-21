@@ -1,7 +1,11 @@
+##Set group ID
 $groupid = "00000000000000000000"
 
+##Set URL
 $uri = "https://graph.microsoft.com/beta/deviceManagement/configurationPolicies"
 
+##Populate JSON
+write-host "Populating JSON"
 $json = @"
 {
 	"description": "Block everything",
@@ -197,14 +201,21 @@ $json = @"
 }
 "@
 
+write-host "JSON Populated"
+
+write-host "Sending request to create policy"
 $policy = Invoke-MgGraphRequest -Method POST -Uri $uri -Body $json -ContentType "application/json" -OutputType PSObject
 
+write-host "Policy created"
+
 $policyid = $policy.id
+write-host "Policy ID: $policyid"
 
 $assignuri = "https://graph.microsoft.com/beta/deviceManagement/configurationPolicies/$policyid/assign"
 
+##Populate JSON
+write-host "Populating JSON"
 $assignjson = @"
-
 {
 	"assignments": [
 		{
@@ -215,7 +226,9 @@ $assignjson = @"
 		}
 	]
 }
-
 "@
+write-host "JSON Populated"
 
+write-host "Sending request to assign policy"
 Invoke-MgGraphRequest -Method POST -Uri $assignuri -Body $assignjson -ContentType "application/json"
+write-host "Policy assigned"

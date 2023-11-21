@@ -1,7 +1,11 @@
+##Set group ID
 $groupid = "00000000000000000000"
 
+##Set URL
 $uri = "https://graph.microsoft.com/beta/deviceManagement/configurationPolicies"
 
+##Populate JSON
+write-host "Populating JSON"
 $json = @"
 {
 	"description": "Baseline Firewall Settings",
@@ -177,26 +181,33 @@ $json = @"
 	}
 }
 "@
+write-host "JSON Populated"
 
+# Invoke a POST request to the Microsoft Graph API with the policy JSON data
 $policy = Invoke-MgGraphRequest -Method POST -Uri $uri -Body $json -ContentType "application/json" -OutputType PSObject
 
+# Extract the policy ID from the response
 $policyid = $policy.id
+Write-Output "Policy ID: $policyid"
 
+# Define the URL for the assignment endpoint of the Microsoft Graph API
 $assignuri = "https://graph.microsoft.com/beta/deviceManagement/configurationPolicies/$policyid/assign"
+Write-Output "Assignment URL: $assignuri"
 
+# Define the JSON data for the assignment request
 $assignjson = @"
-
 {
-	"assignments": [
-		{
-			"target": {
-				"@odata.type": "#microsoft.graph.groupAssignmentTarget",
-				"groupId": "$groupid"
-			}
-		}
-	]
+    "assignments": [
+        {
+            "target": {
+                "@odata.type": "#microsoft.graph.groupAssignmentTarget",
+                "groupId": "$groupid"
+            }
+        }
+    ]
 }
-
 "@
+Write-Output "Assignment JSON: $assignjson"
 
+# Invoke a POST request to the Microsoft Graph API with the assignment JSON data
 Invoke-MgGraphRequest -Method POST -Uri $assignuri -Body $assignjson -ContentType "application/json"

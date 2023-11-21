@@ -1,6 +1,8 @@
+##Set the account name
 $accountname = ""
 
 ##Create LAPS policy to use new user account
+write-host "Populating JSON"
 $lapsurl = "https://graph.microsoft.com/beta/deviceManagement/configurationPolicies"
 $lapsjson = @"
 {
@@ -116,22 +118,30 @@ $lapsjson = @"
 }
 "@
 
+# Invoke a POST request to the Microsoft Graph API with the LAPS JSON data
 $lapspolicy = Invoke-MgGraphRequest -Method POST -Uri $lapsurl -Body $lapsjson -ContentType "application/json" -OutputType PSObject
 
+# Extract the LAPS policy ID from the response
 $lapspolicyid = $lapspolicy.id
+Write-Output "LAPS Policy ID: $lapspolicyid"
 
+# Define the URL for the assignment endpoint of the Microsoft Graph API for the LAPS policy
 $lapsassignurl = "https://graph.microsoft.com/beta/deviceManagement/configurationPolicies/$lapspolicyid/assign"
+Write-Output "LAPS Assignment URL: $lapsassignurl"
 
+# Define the JSON data for the LAPS assignment request
 $lapsassignjson = @"
 {
-	"assignments": [
-		{
-			"target": {
-				"@odata.type": "#microsoft.graph.allDevicesAssignmentTarget"
-			}
-		}
-	]
+    "assignments": [
+        {
+            "target": {
+                "@odata.type": "#microsoft.graph.allDevicesAssignmentTarget"
+            }
+        }
+    ]
 }
 "@
+Write-Output "LAPS Assignment JSON: $lapsassignjson"
 
+# Invoke a POST request to the Microsoft Graph API with the LAPS assignment JSON data
 Invoke-MgGraphRequest -Method POST -Uri $lapsassignurl -Body $lapsassignjson -ContentType "application/json"

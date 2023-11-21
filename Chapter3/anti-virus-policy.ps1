@@ -1,7 +1,11 @@
+##Set Group ID
 $groupid = "0000000000000000000000000"
 
+##Set URL
 $policyurl = "https://graph.microsoft.com/beta/deviceManagement/configurationPolicies"
 
+##Populate JSON
+write-host "Populating JSON"
 $policyjson = @"
 {
 	"description": "Default Anti-Virus Policy",
@@ -608,11 +612,21 @@ $policyjson = @"
 	}
 }
 "@
+write-host "JSON Populated"
 
+##Create policy
+write-host "Creating Policy"
 $policy = Invoke-MgGraphRequest -Method POST -Uri $policyurl -Body $policyjson -ContentType "application/json" -OutputType PSObject
+write-host "Policy created"
 
+##Grab ID
 $policyid = $policy.id
+write-host "Policy ID is $policyid"
+##Set assignment URL
 $assignurl = "https://graph.microsoft.com/beta/deviceManagement/configurationPolicies/$policyid/assign"
+
+##Populate JSON
+write-host "Populating assignment JSON"
 $assignjson = @"
 {
 	"assignments": [
@@ -625,5 +639,9 @@ $assignjson = @"
 	]
 }
 "@
+write-host "JSON Populated"
 
+##Assign policy
+write-host "Assigning Policy"
 Invoke-MgGraphRequest -Method POST -Uri $assignurl -Body $assignjson -ContentType "application/json"
+write-host "Policy Assigned"
