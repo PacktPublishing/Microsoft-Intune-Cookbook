@@ -4,7 +4,7 @@ $Publisher = "Your Name Here"
 ##RunAs can be "system" or "user"
 $RunAs = "system"
 ##True for 32-bit, false for 64-bit
-$RunAs32 = $true
+$RunAs32 = "true"
 ##Daily or Hourly
 $ScheduleType = "Daily"
 ##How Often
