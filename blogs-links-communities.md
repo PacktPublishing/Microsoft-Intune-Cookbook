@@ -79,7 +79,7 @@
 | All about Microsoft Endpoint Manager | [https://www.petervanderwoude.nl](https://www.petervanderwoude.nl/) |  
 | Power Of PowerShell | [https://www.powerofpowershell.com/blog](https://www.powerofpowershell.com/blog) |  
 | Prajwal Desai | [https://www.prajwaldesai.com](https://www.prajwaldesai.com/) |  
-| https://www.rockenroll.tech | [https://www.rockenroll.tech](https://www.rockenroll.tech/) |  
+| Nicklas Ahlberg | [https://www.rockenroll.tech](https://www.rockenroll.tech/) |  
 | Sander Rozemuller | [https://www.rozemuller.com/](https://www.rozemuller.com/) |  
 | Silvio Di Benedetto | [https://www.silviodibenedetto.com/](https://www.silviodibenedetto.com/) |  
 | SIMSEN blog | [https://www.simsenblog.dk](https://www.simsenblog.dk/) |  
