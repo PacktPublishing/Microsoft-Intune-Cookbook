@@ -89,6 +89,7 @@
 | TechGuy | [https://www.techguy.at/](https://www.techguy.at/) |  
 | The Lazy Administrator | [https://www.thelazyadministrator.com](https://www.thelazyadministrator.com/) |  
 | Three Sixty Thrive | [https://www.threesixtythrive365.com/blog](https://www.threesixtythrive365.com/blog) |  
+| Patch Tuesday Blog | [https://patchtuesday.com/category/blog/](https://patchtuesday.com/category/blog/)  |  
 
 # YouTube channels
 
