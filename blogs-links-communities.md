@@ -48,12 +48,12 @@
 | Modern Device Management | [https://rahuljindalmyit.blogspot.com/](https://rahuljindalmyit.blogspot.com/) |  
 | SCCMentor Paul Winstanley | [https://sccmentor.com](https://sccmentor.com/) |  
 | scloud | [https://scloud.work/](https://scloud.work/) |  
-| https://scotscottmca.com/ | [https://scotscottmca.com/](https://scotscottmca.com/) |  
+| Scott McAllister | [https://scotscottmca.com/](https://scotscottmca.com/) |  
 | EMS Route Shehan Perera | [https://shehanperera.com](https://shehanperera.com/) |  
 | Skip To The Endpoint | [https://skiptotheendpoint.co.uk/](https://skiptotheendpoint.co.uk/) |  
 | Simon does | [https://skotheimsvik.no](https://skotheimsvik.no/) |  
 | SMBtotheCloud | [https://smbtothecloud.com](https://smbtothecloud.com/) |  
-| https://smsagent.blog | [https://smsagent.blog](https://smsagent.blog/) |  
+| Trevor Jones | [https://smsagent.blog](https://smsagent.blog/) |  
 | tech.tristantyson.com | cloudmgmt.co.uk | [https://tech.tristantyson.com/tech.tristantyson.com/](https://tech.tristantyson.com/tech.tristantyson.com/) |  
 | techlab.blog | [https://techlab.blog](https://techlab.blog/) |  
 | Thiago BeierðŸ | [https://thiagobeier.wordpress.com](https://thiagobeier.wordpress.com/) |  
