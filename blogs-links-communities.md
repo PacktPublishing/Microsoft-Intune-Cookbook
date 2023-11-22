@@ -7,6 +7,7 @@
 | Thomas Marcussen | [https://blog.thomasmarcussen.com/](https://blog.thomasmarcussen.com/) |  
 | Brooks Peppin's Blog | [https://brookspeppin.com](https://brookspeppin.com/) |  
 | Call4Cloud | [https://call4cloud.nl](https://call4cloud.nl/) |  
+| Daniel Bradley | [https://ourcloudnetwork.com/](https://ourcloudnetwork.com/) |  
 | CCMEXEC.COM Enterprise Mobility | [https://ccmexec.com/](https://ccmexec.com/) |  
 | Moe Kinani | [https://cloudbymoe.com](https://cloudbymoe.com/) |  
 | Conditional Access | [https://conditionalaccess.uk/](https://conditionalaccess.uk/) |  
