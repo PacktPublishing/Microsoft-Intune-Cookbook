@@ -7,6 +7,7 @@
 | Thomas Marcussen | [https://blog.thomasmarcussen.com/](https://blog.thomasmarcussen.com/) |  
 | Brooks Peppin's Blog | [https://brookspeppin.com](https://brookspeppin.com/) |  
 | Call4Cloud | [https://call4cloud.nl](https://call4cloud.nl/) |  
+| Daniel Bradley | [https://ourcloudnetwork.com/](https://ourcloudnetwork.com/) |  
 | CCMEXEC.COM Enterprise Mobility | [https://ccmexec.com/](https://ccmexec.com/) |  
 | Moe Kinani | [https://cloudbymoe.com](https://cloudbymoe.com/) |  
 | Conditional Access | [https://conditionalaccess.uk/](https://conditionalaccess.uk/) |  
@@ -48,12 +49,12 @@
 | Modern Device Management | [https://rahuljindalmyit.blogspot.com/](https://rahuljindalmyit.blogspot.com/) |  
 | SCCMentor Paul Winstanley | [https://sccmentor.com](https://sccmentor.com/) |  
 | scloud | [https://scloud.work/](https://scloud.work/) |  
-| https://scotscottmca.com/ | [https://scotscottmca.com/](https://scotscottmca.com/) |  
+| Scott McAllister | [https://scotscottmca.com/](https://scotscottmca.com/) |  
 | EMS Route Shehan Perera | [https://shehanperera.com](https://shehanperera.com/) |  
 | Skip To The Endpoint | [https://skiptotheendpoint.co.uk/](https://skiptotheendpoint.co.uk/) |  
 | Simon does | [https://skotheimsvik.no](https://skotheimsvik.no/) |  
 | SMBtotheCloud | [https://smbtothecloud.com](https://smbtothecloud.com/) |  
-| https://smsagent.blog | [https://smsagent.blog](https://smsagent.blog/) |  
+| Trevor Jones | [https://smsagent.blog](https://smsagent.blog/) |  
 | tech.tristantyson.com | cloudmgmt.co.uk | [https://tech.tristantyson.com/tech.tristantyson.com/](https://tech.tristantyson.com/tech.tristantyson.com/) |  
 | techlab.blog | [https://techlab.blog](https://techlab.blog/) |  
 | Thiago BeierðŸ | [https://thiagobeier.wordpress.com](https://thiagobeier.wordpress.com/) |  
@@ -79,7 +80,7 @@
 | All about Microsoft Endpoint Manager | [https://www.petervanderwoude.nl](https://www.petervanderwoude.nl/) |  
 | Power Of PowerShell | [https://www.powerofpowershell.com/blog](https://www.powerofpowershell.com/blog) |  
 | Prajwal Desai | [https://www.prajwaldesai.com](https://www.prajwaldesai.com/) |  
-| https://www.rockenroll.tech | [https://www.rockenroll.tech](https://www.rockenroll.tech/) |  
+| Nicklas Ahlberg | [https://www.rockenroll.tech](https://www.rockenroll.tech/) |  
 | Sander Rozemuller | [https://www.rozemuller.com/](https://www.rozemuller.com/) |  
 | Silvio Di Benedetto | [https://www.silviodibenedetto.com/](https://www.silviodibenedetto.com/) |  
 | SIMSEN blog | [https://www.simsenblog.dk](https://www.simsenblog.dk/) |  
@@ -89,6 +90,7 @@
 | TechGuy | [https://www.techguy.at/](https://www.techguy.at/) |  
 | The Lazy Administrator | [https://www.thelazyadministrator.com](https://www.thelazyadministrator.com/) |  
 | Three Sixty Thrive | [https://www.threesixtythrive365.com/blog](https://www.threesixtythrive365.com/blog) |  
+| Patch Tuesday Blog | [https://patchtuesday.com/category/blog/](https://patchtuesday.com/category/blog/)  |  
 
 # YouTube channels
 
