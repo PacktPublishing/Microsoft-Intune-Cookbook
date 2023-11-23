@@ -1,12 +1,18 @@
+##Set Variables
 $name = "macOS Enrollment"
 $description = "Corporate Managed macOS Devices"
 
+##Set Token Retrieval URL
 $settingsurl = "https://graph.microsoft.com/beta/deviceManagement/depOnboardingSettings/"
 
+##Get Token ID
 $tokenid = (Invoke-MgGraphRequest -Method GET -Uri $settingsurl -OutputType PSObject).value.id
+write-host "Token ID: $tokenid"
 
+##Set Profile URL
 $url = "https://graph.microsoft.com/beta/deviceManagement/depOnboardingSettings/$tokenid/enrollmentProfiles"
 
+##Populate JSON
 $json = @"
 {
 	"@odata.type": "#microsoft.graph.depMacOSEnrollmentProfile",
@@ -74,10 +80,19 @@ $json = @"
 }
 "@
 
+##Create Profile
+write-host "Creating Profile"
 $macosprofile = Invoke-MgGraphRequest -Method POST -Uri $url -Body $json -ContentType "application/json" -OutputType PSObject
+write-host "Profile Created"
 
+##Get Profile ID
 $profileid = $macosprofile.id
+write-host "Profile ID: $profileid"
 
+##Set Default Profile URL
 $defaulturl = "https://graph.microsoft.com/beta/deviceManagement/depOnboardingSettings/$tokenid/enrollmentProfiles/$profileid/setDefaultProfile"
 
+##Set Default Profile
+write-host "Setting Default Profile"
 Invoke-MgGraphRequest -Method POST -Uri $defaulturl -ContentType "application/json" -OutputType PSObject
+write-host "Default Profile Set"

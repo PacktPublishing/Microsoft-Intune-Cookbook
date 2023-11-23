@@ -1,10 +1,14 @@
+##Set Variables
 $name = "Windows Custom Compliance"
 $description = "Checks Manufacturer, Firewall, Malware and Bitlocker"
 $publisher = "Publisher"
 $loggedonuser = "system"
 $runas32 = $false
+
+##Set URL
 $url = "https://graph.microsoft.com/beta/deviceManagement/deviceComplianceScripts"
 
+##Set Script
 $psscript = @'
 $biosinfo = Get-CimInstance -ClassName Win32_ComputerSystem
 $manufacturer = $biosinfo.Manufacturer
@@ -41,10 +45,11 @@ return $hash | ConvertTo-Json -Compress
 '@
 
 ##Convert to base64
-
+write-host "Converting to Base64"
 $scriptcontent = [System.Text.Encoding]::UTF8.GetBytes($psscript)
 $scriptcontent = [System.Convert]::ToBase64String($scriptcontent)
 
+##Populate JSON Body
 $json = @"
 {
 	"description": "$description",
@@ -58,16 +63,21 @@ $json = @"
 }
 "@
 
+##Create Script
+write-host "Creating Script"
 $psscript = Invoke-MgGraphRequest -Uri $url -Method Post -Body $json -ContentType "application/json" -OutputType PSObject
+write-host "Script Created"
 
+##Get Script ID
 $scriptid = $psscript.id
+write-host "Script ID: $scriptid"
 
+##Set Variables
 $policyname = "Windows Custom Compliance"
-
 $policydescription = "Custom Compliance ONLY"
-
 $groupid = "000000-0000-0000-0000-000000000000"
 
+##Set JSON
 $compliancejson = @'
 {
     "Rules":[ 
@@ -132,13 +142,13 @@ $compliancejson = @'
 '@
 
 ##Convert to base64
-
 $jsoncontent = [System.Text.Encoding]::UTF8.GetBytes($compliancejson)
 $jsoncontent = [System.Convert]::ToBase64String($jsoncontent)
 
-
+##Populate URL
 $policyurl = "https://graph.microsoft.com/beta/deviceManagement/deviceCompliancePolicies"
 
+##Populate JSON Body
 $policyjson = @"
 {
 	"@odata.type": "#microsoft.graph.windows10CompliancePolicy",
@@ -171,12 +181,19 @@ $policyjson = @"
 }
 "@
 
+##Create Policy
+write-host "Creating Policy"
 $compliancepolicy = Invoke-MgGraphRequest -Uri $policyurl -Method Post -Body $policyjson -ContentType "application/json" -OutputType PSObject
+write-host "Policy Created"
 
+##Get Policy ID
 $policyid = $compliancepolicy.id
+write-host "Policy ID: $policyid"
 
+##Populate Assignment URL
 $assignmenturl = "https://graph.microsoft.com/beta/deviceManagement/deviceCompliancePolicies/$policyid/assign"
 
+##Populate Assignment JSON
 $assignmentjson = @"
 {
 	"assignments": [
@@ -190,4 +207,7 @@ $assignmentjson = @"
 }
 "@
 
+##Assign Policy
+write-host "Assigning Policy"
 Invoke-MgGraphRequest -Uri $assignmenturl -Method Post -Body $assignmentjson -ContentType "application/json" -OutputType PSObject
+write-host "Policy Assigned"

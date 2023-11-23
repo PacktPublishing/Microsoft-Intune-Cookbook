@@ -1,7 +1,10 @@
+##Set Name
 $name = "Require App Protection Policy"
 
+##Set URL
 $url = "https://graph.microsoft.com/v1.0/identity/conditionalAccess/policies"
 
+##Populate JSON
 $json = @"
 {
 	"conditions": {
@@ -61,4 +64,7 @@ $json = @"
 }
 "@
 
+##Create Policy
+Write-Host "Creating policy $name"
 Invoke-MgGraphRequest -Method POST -Uri $url -Body $json -ContentType "application/json" -OutputType PSObject
+Write-Host "Policy created successfully"

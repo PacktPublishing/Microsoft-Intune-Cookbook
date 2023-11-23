@@ -1,15 +1,22 @@
+##Set URL
 $url = "https://graph.microsoft.com/v1.0/identity/conditionalAccess/policies"
 
+##Set Variables
 $name = "Block Non-Compliant Devices"
-
 $breakglassname = "Azure BreakGlass Account"
 
+##Get Object ID for BreakGlass account
 $breakglassid = (Invoke-MgGraphRequest -Uri "https://graph.microsoft.com/v1.0/users?`$filter=displayName eq '$breakglassname'" -Method Get -ContentType "application/json" -OutputType PSObject).value.Id
+write-host "BreakGlass ID: $breakglassid"
 
+##Set Role Name
 $rolename = "Azure AD Joined Device Local Administrator"
 
+##Get Role ID
 $roleid = (Invoke-MgGraphRequest -Uri "https://graph.microsoft.com/v1.0/directoryRoles?`$filter=displayName eq '$rolename'" -Method Get -ContentType "application/json" -OutputType PSObject).value.Id
+write-host "Role ID: $roleid"
 
+##Populate JSON Body
 $json = @"
 {
 	"conditions": {
@@ -74,4 +81,7 @@ $json = @"
 }
 "@
 
+##Create Policy
+write-host "Creating Policy"
 Invoke-MgGraphRequest -Method POST -Uri $url -Body $json -ContentType "application/json" -OutputType PSObject
+write-host "Policy Created"

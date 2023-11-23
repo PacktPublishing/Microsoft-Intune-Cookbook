@@ -1,10 +1,14 @@
+##Set Variables
 $name = "iOS Settings Catalog"
 $description = "Blocks iCloud, App Store and AirDrop"
 $groupid = "00000000-0000-0000-0000-000000000000"
 
 
+##Set URL
 $url = "https://graph.microsoft.com/beta/deviceManagement/configurationPolicies"
 
+
+##Populate JSON
 $json = @"
 {
 	"description": "$description",
@@ -68,10 +72,19 @@ $json = @"
 }
 "@
 
+##Create Profile
+write-host "Creating Profile $name"
 $createprofile = Invoke-MgGraphRequest -Uri $url -Method Post -Body $json -ContentType "application/json" -OutputType PSObject
-$profileid = $createprofile.id
+write-host "Profile $name created"
 
+##Get Profile ID
+$profileid = $createprofile.id
+write-host "Profile ID for $name is $profileid"
+
+##Populate URL with Profile ID
 $assignurl = "https://graph.microsoft.com/beta/deviceManagement/configurationPolicies/$profileid/assign"
+
+##Populate JSON
 $assignjson = @"
 {
 	"assignments": [
@@ -85,4 +98,7 @@ $assignjson = @"
 }
 "@
 
+##Assign Profile
+write-host "Assigning Profile $name"
 Invoke-MgGraphRequest -Method POST -Uri $assignurl -Body $assignjson -ContentType "application/json"
+write-host "Assigned Profile $name"

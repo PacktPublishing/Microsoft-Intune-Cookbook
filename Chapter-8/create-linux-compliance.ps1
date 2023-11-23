@@ -1,8 +1,12 @@
+##Set Variables
 $name = "Linux Compliance"
 $description = "Linux Compliance, non-custom"
-$url = "https://graph.microsoft.com/beta/deviceManagement/compliancePolicies"
-$group = "00000000-0000-0000-0000-000000000000"
+$groupid = "00000000-0000-0000-0000-000000000000"
 
+##Set URL
+$url = "https://graph.microsoft.com/beta/deviceManagement/compliancePolicies"
+
+##Populate JSON Body
 $json = @"
 {
 	"description": "$description",
@@ -84,12 +88,19 @@ $json = @"
 }
 "@
 
+##Create Policy
+write-host "Creating Policy"
 $linuxpolicy = Invoke-MgGraphRequest -uri $url -Method POST -Body $json -ContentType "application/json" -OutputType PSObject
+write-host "Policy Created"
 
+##Get Policy ID
 $policyid = $linuxpolicy.id
+write-host "Policy ID: $policyid"
 
+##Populate ID into assignment URL
 $assignurl = "https://graph.microsoft.com/beta/deviceManagement/configurationPolicies/$policyid/assign"
 
+##Populate JSON Body
 $assignjson = @"
 {
 	"assignments": [
@@ -103,4 +114,7 @@ $assignjson = @"
 }
 "@
 
+##Assign Policy
+write-host "Assigning Policy"
 Invoke-MgGraphRequest -uri $assignurl -Method POST -Body $assignjson -ContentType "application/json" -OutputType PSObject
+write-host "Policy Assigned"

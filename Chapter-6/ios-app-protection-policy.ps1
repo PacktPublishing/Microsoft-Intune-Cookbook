@@ -1,9 +1,12 @@
+##Set Variables
 $name = "iOS App Protection"
 $description = "Protect Microsoft Apps"
 $groupid = "00000000-0000-0000-0000-000000000000"
 
+##Set URL
 $url = "https://graph.microsoft.com/beta/deviceAppManagement/iosManagedAppProtections"
 
+##Populate JSON
 $json = @"
 {
 	"@odata.type": "#microsoft.graph.iosManagedAppProtection",
@@ -174,4 +177,7 @@ $json = @"
 }
 "@
 
+##Create Profile
+Write-Host "Creating Profile $name"
 Invoke-MgGraphRequest -Method POST -uri $url -Body $json -ContentType "application/json"
+Write-Host "Profile $name created"

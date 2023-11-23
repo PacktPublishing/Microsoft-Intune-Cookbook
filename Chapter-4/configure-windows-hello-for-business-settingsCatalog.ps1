@@ -1,6 +1,6 @@
-
-
+##Set URL
 $settingsurl = "https://graph.microsoft.com/beta/deviceManagement/configurationPolicies"
+##Populate JSON
 $json = @"
 {
 	"description": "",
@@ -171,10 +171,15 @@ $json = @"
 }
 "@
 
+##Create Policy
+write-host "Creating Policy"
 $policy = Invoke-MgGraphRequest -Uri $settingsurl -Method Post -Body $json -ContentType "application/json" -OutputType PSObject
+write-host "Policy Created"
 
 $policyid = $policy.id
-
+write-host "Policy ID: $policyid"
+##Assign Policy
+write-host "Assigning Policy"
 $groupid = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
 $assignurl = "https://graph.microsoft.com/beta/deviceManagement/configurationPolicies/$policyid/assign"
 
@@ -192,3 +197,4 @@ $assignjson = @"
 "@
 
 Invoke-MgGraphRequest -Uri $assignurl -Method Post -Body $assignjson -ContentType "application/json" -OutputType PSObject
+write-host "Policy Assigned"

@@ -1,9 +1,10 @@
+##Set Variables
 $url = "https://graph.microsoft.com/beta/deviceAppManagement/mobileApps/"
 $appname = "Microsoft 365 Apps"
 $appdesc = "Microsoft 365 Apps for Enterprise"
-
 $groupid = "00000000-0000-0000-0000-000000000000"
 
+##Populate JSON
 $json = @"
 {
 	"@odata.type": "#microsoft.graph.macOSOfficeSuiteApp",
@@ -24,12 +25,19 @@ $json = @"
 }
 "@
 
+##Create M365 App
+write-host "Creating M365 App"
 $mobileapp = Invoke-MgGraphRequest -Url $url -Method Post -Body $json -ContentType "application/json" -OutputType PSObject
+write-host "M365 App Created"
 
+##Get M365 App ID
 $mobileappid = $mobileapp.id
+write-host "M365 App ID: $mobileappid"
 
+##Populate assignment URL
 $assignurl = "https://graph.microsoft.com/beta/deviceAppManagement/mobileApps/$mobileappid/assign"
 
+##Populate assignment JSON
 $assignjson = @"
 {
 	"mobileAppAssignments": [
@@ -46,4 +54,7 @@ $assignjson = @"
 }
 "@
 
+##Assign M365 App
+write-host "Assigning M365 App"
 Invoke-MgGraphRequest -Url $assignurl -Method Post -Body $assignjson -ContentType "application/json"
+write-host "M365 App Assigned"

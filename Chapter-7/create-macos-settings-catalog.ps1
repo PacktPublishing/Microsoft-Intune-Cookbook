@@ -1,9 +1,11 @@
+##Set Variables
 $name = "macOS Settings"
 $description = "Baseline settings for macOS devices"
 
+##Set URL
 $url = "https://graph.microsoft.com/beta/deviceManagement/configurationPolicies"
 
-
+##Populate JSON
 $json = @"
 {
 	"description": "$description",
@@ -130,13 +132,20 @@ $json = @"
 }
 "@
 
+##Create Policy
+Write-Host "Creating Policy"
 $policy = Invoke-MgGraphRequest -Method POST -Uri $url -Body $json -OutputType PSObject -ContentType "application/json"
+Write-Host "Policy Created"
 
+##Get Policy ID
 $policyid = $policy.id
+Write-Host "Policy ID: $policyid"
 
 
+##Populate assignment URL
 $assignurl = "https://graph.microsoft.com/beta/deviceManagement/configurationPolicies/$policyid/assign"
 
+##Populate assignment JSON
 $json = @"
 {
 	"assignments": [
@@ -149,4 +158,7 @@ $json = @"
 }
 "@
 
+##Assign Policy
+Write-Host "Assigning Policy"
 Invoke-MgGraphRequest -Method POST -Uri $assignurl -Body $json -OutputType PSObject -ContentType "application/json"
+Write-Host "Policy Assigned"

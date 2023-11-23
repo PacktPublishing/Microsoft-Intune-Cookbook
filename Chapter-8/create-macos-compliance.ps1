@@ -1,9 +1,12 @@
+##Set Variables
 $name = "macOS Compliance"
 $description = "Compliance Policy for macOS Devices"
 $groupid = "00000000-0000-0000-0000-000000000000"
 
+##Set URL
 $url = "https://graph.microsoft.com/beta/deviceManagement/deviceCompliancePolicies"
 
+##Populate JSON Body
 $json = @"
 {
 	"@odata.type": "#microsoft.graph.macOSCompliancePolicy",
@@ -53,12 +56,19 @@ $json = @"
 }
 "@
 
+##Create Policy
+write-host "Creating Policy"
 $assignpolicy = Invoke-MgGraphRequest -Uri $url -Method POST -Body $json -ContentType "application/json" -OutputType PSObject
+write-host "Policy Created"
 
+##Get Policy ID
 $policyid = $assignpolicy.id
+write-host "Policy ID: $policyid"
 
+##Populate Assignment URL
 $assignurl = "https://graph.microsoft.com/beta/deviceManagement/deviceCompliancePolicies/$policyid/assign"
 
+##Populate Assignment JSON
 $assignjson = @"
 {
 	"assignments": [
@@ -72,4 +82,7 @@ $assignjson = @"
 }
 "@
 
+##Assign Policy
+write-host "Assigning Policy"
 Invoke-MgGraphRequest -Uri $assignurl -Method POST -Body $assignjson -ContentType "application/json" -OutputType PSObject
+write-host "Policy Assigned"

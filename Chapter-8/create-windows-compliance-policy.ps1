@@ -1,3 +1,4 @@
+##Set Variables
 $name = "Windows Compliance Policy"
 $description = "Windows Compliance Policy using GUI settings"
 $groupid = "0000000-0000-0000-0000-000000000000"
@@ -48,7 +49,7 @@ $json = @"
 }
 "@
 
-$compliance = invoke-mggraphrequest -uri $uri -json $json -method post -contenttype "application/json" -outputtype PSObject
+$compliance = invoke-mggraphrequest -uri $url -Body $json -method post -contenttype "application/json" -outputtype PSObject
 
 $complianceid = $compliance.id
 
@@ -59,11 +60,11 @@ $assignjson = @"
 		{
 			"target": {
 				"@odata.type": "#microsoft.graph.groupAssignmentTarget",
-				"groupId": "527ee8b8-b3e7-4bbf-9abf-45bdced10a0d"
+				"groupId": "$groupid"
 			}
 		}
 	]
 }
 "@
 
-invoke-mggraphrequest -uri $assignurl -json $assignjson -method post -contenttype "application/json" -outputtype PSObject
+invoke-mggraphrequest -uri $assignurl -Body $assignjson -method post -contenttype "application/json" -outputtype PSObject

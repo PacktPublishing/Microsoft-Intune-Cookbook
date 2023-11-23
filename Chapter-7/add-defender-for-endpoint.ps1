@@ -1,6 +1,10 @@
+##Set URL
 $url = "https://graph.microsoft.com/beta/deviceAppManagement/mobileApps/"
 
+##Set Group ID
 $groupid = "00000000-0000-0000-0000-000000000000"
+
+##Set JSON
 
 $json = @"
 {
@@ -22,12 +26,19 @@ $json = @"
 }
 "@
 
+##Create Mobile App
+write-host "Creating Mobile App"
 $mobileapp = Invoke-MgGraphRequest -Url $url -Method Post -Body $json -ContentType "application/json" -OutputType PSObject
+write-host "Mobile App Created"
 
+##Get Mobile App ID
 $mobileappid = $mobileapp.id
+write-host "Mobile App ID: $mobileappid"
 
+##Populate URL
 $assignurl = "https://graph.microsoft.com/beta/deviceAppManagement/mobileApps/$mobileappid/assign"
 
+##Populate JSON
 $assignjson = @"
 {
 	"mobileAppAssignments": [
@@ -44,4 +55,7 @@ $assignjson = @"
 }
 "@
 
+##Assign Mobile App
+write-host "Assigning Mobile App"
 Invoke-MgGraphRequest -Url $assignurl -Method Post -Body $assignjson -ContentType "application/json"
+write-host "Mobile App Assigned"

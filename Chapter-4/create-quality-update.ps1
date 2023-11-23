@@ -1,5 +1,4 @@
-Connect-MgGraph -Scopes RoleAssignmentSchedule.ReadWrite.Directory, Domain.Read.All, Domain.ReadWrite.All, Directory.Read.All, Policy.ReadWrite.ConditionalAccess, DeviceManagementApps.ReadWrite.All, DeviceManagementConfiguration.ReadWrite.All, DeviceManagementManagedDevices.ReadWrite.All, openid, profile, email, offline_access, Policy.ReadWrite.PermissionGrant,RoleManagement.ReadWrite.Directory, Policy.ReadWrite.DeviceConfiguration, DeviceLocalCredential.Read.All, DeviceManagementManagedDevices.PrivilegedOperations.All, DeviceManagementServiceConfig.ReadWrite.All, Policy.Read.All, WindowsUpdates.ReadWrite.All
-
+##Set variables
 $name = "Expedited Updates Policy"
 $description = "Expedited Quality Updates"
 $groupid = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
@@ -38,16 +37,25 @@ param
     return $alloutput
     }
 
+##Set URL
 $allupdatesurl = "https://graph.microsoft.com/beta/admin/windows/updates/catalog/entries"
 
+##Get all available updates
+write-host "Getting all available updates"
 $allupdates = getallpagination -url $allupdatesurl
-
+write-host "Retrieved all available updates"
+##Display them
 $selectedupdate = $allupdates | Where-Object '@odata.type' -EQ "#microsoft.graph.windowsUpdates.qualityUpdateCatalogEntry" | Where-Object 'qualityUpdateClassification' -eq "security" | select-object -First 3 | select-object catalogName, releaseDateTime | Out-GridView -PassThru -Title "Select Release"
 
 $selectedupdatedate = $selectedupdate.releaseDateTime
+write-host "Selected update date is $selectedupdatedate"
 
 ##Convert to zulu
+write-host "Converting to Zulu"
 $selectedupdatedate = $selectedupdatedate.ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ")
+
+##Populate JSON
+write-host "Populating JSON"
 $json = @"
 {
 	"description": "$description",
@@ -59,12 +67,18 @@ $json = @"
 	"roleScopeTagIds": []
 }
 "@
+write-host "JSON populated"
 
+
+##Create policy
+write-host "Creating policy"
 $updatepolicy = Invoke-MgGraphRequest -Uri $url -Method Post -Body $json -OutputType PSObject -ContentType "application/json"
+write-host "Policy created"
 
 $updatepolicyid = $updatepolicy.id
+write-host "Policy ID is $updatepolicyid"
 
-
+##Set Assignment URL and JSON
 $assignurl = "https://graph.microsoft.com/beta/deviceManagement/windowsQualityUpdateProfiles/$updatepolicyid/assign"
 $assignjson = @"
 {
@@ -79,4 +93,7 @@ $assignjson = @"
 }
 "@
 
+##Assign
+write-host "Assigning policy"
 Invoke-MgGraphRequest -Uri $assignurl -Method Post -Body $assignjson -OutputType PSObject -ContentType "application/json"
+write-host "Policy assigned"

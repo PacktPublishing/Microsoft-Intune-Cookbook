@@ -1,11 +1,10 @@
+##Set Variables
 $url = "https://graph.microsoft.com/beta/deviceManagement/deviceConfigurations"
-
 $name = "macOS Updates"
-
 $description = "Managed updates on macOS devices"
-
 $groupid = "000000-0000-0000-0000-000000000000"
 
+##Populate JSON for Immediate Updates
 $jsonimmediate = @"
 {
 	"@odata.type": "#microsoft.graph.macOSSoftwareUpdateConfiguration",
@@ -27,6 +26,7 @@ $jsonimmediate = @"
 }
 "@
 
+##Populate JSON for Window deployment
 $jsonwindow = @"
 {
 	"@odata.type": "#microsoft.graph.macOSSoftwareUpdateConfiguration",
@@ -56,12 +56,19 @@ $jsonwindow = @"
 }
 "@
 
+##Create Policy
+write-host "Creating Policy"
 $policy = Invoke-MgGraphRequest -Uri $url -Method Post -Body $jsonimmediate -ContentType "application/json" -OutputType PSObject
+write-host "Policy Created"
 
+##Get Policy ID
 $policyid = $policy.id
+write-host "Policy ID: $policyid"
 
+##Populate assignment URL
 $assignurl = "https://graph.microsoft.com/beta/deviceManagement/deviceConfigurations/$policyid/assign"
 
+##Populate assignment JSON
 $assignjson = @"
 {
 	"assignments": [
@@ -75,4 +82,7 @@ $assignjson = @"
 }
 "@
 
+##Assign Policy
+write-host "Assigning Policy"
 Invoke-MgGraphRequest -Uri $assignurl -Method Post -Body $assignjson -ContentType "application/json"
+write-host "Policy Assigned"

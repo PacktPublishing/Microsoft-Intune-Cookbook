@@ -1,9 +1,12 @@
+##Set Variables
 $name = "Android-Compliance-FullyManaged"
 $description = "Android Compliance Policy for Fully Managed Devices"
 $groupid = "000000-0000-0000-0000-000000000000"
 
+##Set Graph API URL
 $url = "https://graph.microsoft.com/beta/deviceManagement/deviceCompliancePolicies"
 
+##Populate JSON Body
 $json = @"
 {
 	"@odata.type": "#microsoft.graph.androidDeviceOwnerCompliancePolicy",
@@ -58,12 +61,19 @@ $json = @"
 }
 "@
 
+##Create Compliance Policy
+write-host "Creating Android Compliance Policy"
 $androidpolicy = Invoke-MgGraphRequest -uri $url -Method Post -Body $json -ContentType "application/json" -OutputType PSObject
 
+##Get Policy ID
 $androidpolicyid = $androidpolicy.id
+write-host "Android Compliance Policy ID: $androidpolicyid"
 
+##Populate ID into assignment URL
 $assignurl = "https://graph.microsoft.com/beta/deviceManagement/deviceCompliancePolicies/$androidpolicyid/assign"
 
+
+##Populate JSON Body
 $assignjson = @"
 {
 	"assignments": [
@@ -77,4 +87,7 @@ $assignjson = @"
 }
 "@
 
+##Assign Policy
+write-host "Assigning Policy"
 Invoke-MgGraphRequest -uri $assignurl -Method Post -Body $assignjson -ContentType "application/json" -OutputType PSObject
+write-host "Policy Assigned"

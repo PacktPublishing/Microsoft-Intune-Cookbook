@@ -1,8 +1,12 @@
+##Set variables
 $name = "Android App Protection Policy"
 $description = "Microsoft Apps Only"
 $groupid = "00000000-0000-0000-0000-000000000000"
 
+##Set URL
 $url = "https://graph.microsoft.com/beta/deviceAppManagement/androidManagedAppProtections"
+
+##Populate JSON
 $json = @"
 {
 	"@odata.type": "#microsoft.graph.androidManagedAppProtection",
@@ -125,4 +129,7 @@ $json = @"
 }
 "@
 
+##Create policy
+Write-Host "Creating policy $name"
 Invoke-MgGraphRequest -Method POST -Uri $url -Body $json -ContentType "application/json"
+Write-Host "Policy created successfully"

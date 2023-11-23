@@ -1,9 +1,11 @@
+##Set URL
 $url = "https://graph.microsoft.com/beta/deviceAppManagement/mobileApps/"
 
 ##Options are stable, dev or beta
 $channel = "stable"
 $groupid = "00000000-0000-0000-0000-000000000000"
 
+##Populate JSON
 $json = @"
 {
 	"@odata.type": "#microsoft.graph.macOSMicrosoftEdgeApp",
@@ -25,12 +27,19 @@ $json = @"
 }
 "@
 
+##Create the app
+write-host "Creating Edge Application"
 $mobileapp = Invoke-MgGraphRequest -Url $url -Method Post -Body $json -ContentType "application/json" -OutputType PSObject
+write-host "Edge Application Created"
 
+##Get the App id
 $mobileappid = $mobileapp.id
+write-host "Edge Application ID: $mobileappid"
 
+##Add ID to URL
 $assignurl = "https://graph.microsoft.com/beta/deviceAppManagement/mobileApps/$mobileappid/assign"
 
+##Populate JSON
 $assignjson = @"
 {
 	"mobileAppAssignments": [
@@ -47,4 +56,7 @@ $assignjson = @"
 }
 "@
 
+##Assign the app
+write-host "Assigning Edge Application"
 Invoke-MgGraphRequest -Url $assignurl -Method Post -Body $assignjson -ContentType "application/json"
+write-host "Edge Application Assigned"
