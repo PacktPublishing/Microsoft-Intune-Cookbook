@@ -1,7 +1,12 @@
+##Set Variables
 $name = "Quiet Time - Evenings Weekends"
 $description = "Turn off notifications evenings and weekends"
 $groupid = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+
+##Set URL
 $url = "https://graph.microsoft.com/beta/deviceManagement/configurationPolicies"
+
+##Populate JSON
 $json = @"
 {
 	"description": "$description",
@@ -139,11 +144,19 @@ $json = @"
 }
 "@
 
+##Create Quiet Time Policy
+write-host "Creating Quiet Time Policy"
 $quiettime = Invoke-MgGraphRequest -Method POST -Uri $url -Body $json -ContentType "application/json" -OutputType PSObject
-$quiettimeid = $quiettime.id
+write-host "Quiet Time Policy created"
 
+##Get Quiet Time Policy ID
+$quiettimeid = $quiettime.id
+write-host "Quiet Time Policy ID: $quiettimeid"
+
+##Set URL for assigning Quiet Time Policy
 $assignurl = "https://graph.microsoft.com/beta/deviceManagement/configurationPolicies('$quiettimeid')/assign"
 
+##Populate JSON for assigning Quiet Time Policy
 $assignjson = @"
 {
 	"assignments": [
@@ -157,4 +170,7 @@ $assignjson = @"
 }
 "@
 
+##Assign Quiet Time Policy
+write-host "Assigning Quiet Time Policy"
 Invoke-MgGraphRequest -Method POST -Uri $assignurl -Body $assignjson -ContentType "application/json" -OutputType PSObject
+write-host "Quiet Time Policy assigned"

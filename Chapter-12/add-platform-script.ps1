@@ -1,9 +1,12 @@
+##Set Variables
 $name = "PowerShell Device Script"
 $description = "Removes Bing News AppX package and stops Cortana running in search box"
 $groupid = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+
+##Set URL
 $url = "https://graph.microsoft.com/beta/deviceManagement/deviceManagementScripts"
 
-
+##Set Script Content
 $scriptcontent = @'
 Get-AppxPackage -allusers -Name Microsoft.BingNews| Remove-AppxPackage -AllUsers
 
@@ -16,8 +19,11 @@ If (Test-Path $Search) {
 }
 '@
 
+##Convert to Base64
 $base64encoded = [System.Convert]::ToBase64String([System.Text.Encoding]::Unicode.GetBytes($scriptcontent))
 
+
+##Populate JSON
 $json = @"
 {
 	"description": "$name",
@@ -33,11 +39,19 @@ $json = @"
 }
 "@
 
+##Add Script
+write-host "Adding Script"
 $addscript = Invoke-MgGraphRequest -Uri $url -Method Post -Body $json -ContentType "application/json" -OutputType PSObject
+write-host "Script Added"
+
+##Get Script ID
 $scriptid = $addscript.id
+write-host "Script ID is $scriptid"
 
-
+##Populate ID into Assign JSON
 $assignurl = "https://graph.microsoft.com/beta/deviceManagement/deviceManagementScripts/$scriptid/assign"
+
+##Populate JSON
 $assignjson = @"
 {
 	"deviceManagementScriptAssignments": [
@@ -50,4 +64,8 @@ $assignjson = @"
 	]
 }
 "@
+
+##Assign Script
+write-host "Assigning Script"
 Invoke-MgGraphRequest -Uri $assignurl -Method Post -Body $assignjson -ContentType "application/json" -OutputType PSObject
+write-host "Script Assigned"

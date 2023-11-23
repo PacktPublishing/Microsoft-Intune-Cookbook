@@ -30,17 +30,29 @@ param
     return $alloutput
     }
 
+    ##Get all requests
+    write-host "Getting all requests"
 $requests = getallpagination -url "https://graph.microsoft.com/beta/deviceManagement/operationApprovalRequests"
+##Select the request to approve
 $selecectedrequest = $requests | where-object status -ne "completed" | Out-GridView -PassThru
 
-
+##Get the request ID
 $requestid = $selecectedrequest.id
+write-host "Approving request $requestid"
+
+##Set URL
 $url = "https://graph.microsoft.com/beta/deviceManagement/operationApprovalRequests('$requestid')/approve"
 ##Approval can be Approved or Denied
 $approval = "Approved"
+
+##Set JSON
 $json = @"
 {
 	"justification": "$approval"
 }
 "@
+
+##Send request
+write-host "Sending request"
 Invoke-MgGraphRequest -uri $url -Method Post -Body $json -ContentType "application/json"
+write-host "Request sent"

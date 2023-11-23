@@ -1,3 +1,4 @@
+##Set Connectors
 $connectors = @(
     "Windows enterprise certificate",
     "Microsoft Endpoint Configuration Manager",
@@ -17,8 +18,10 @@ $connectors = @(
     "Derived Credentials"
 )
 
+##Select connector
 $selectedconnector = $connectors | Out-GridView -Title "Select a connector to check" -PassThru
 
+##Set URL from selected connector
 switch ($selectedconnector) {
     "Windows enterprise certificate" {
         $url = "https://graph.microsoft.com/beta/deviceAppManagement/enterpriseCodeSigningCertificates"
@@ -71,6 +74,7 @@ switch ($selectedconnector) {
     }
 }
 
+##Get connector
 $output = Invoke-MgGraphRequest -Uri $url -Method Get -OutputType PSObject
 if ($output.value) {
     $output = $output.value

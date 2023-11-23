@@ -1,4 +1,4 @@
-
+##Set Variables
 $groupid = "xxxxx-xxxxx-xxxxx-xxxx"
 ##Elevationtype can be "Auto" or "User"
 $elevationtype = "Auto"
@@ -33,9 +33,10 @@ remove-item $cerpath
 
 
 
-
+##Set URL
 $addurl = "https://graph.microsoft.com/beta/deviceManagement/configurationPolicies"
 
+##Populate JSON
 $json = @"
 {
 	"description": "EPM Policy for $filename in $pathonly",
@@ -268,18 +269,25 @@ if ($elevationtype -eq "Auto") {
 else {
     $finaljson = $json + $json1 + $json2user + $json3
 }
+
+##Create Policy
+write-host "Creating policy"
 $addpolicy = Invoke-MgGraphRequest -method POST -Uri $addurl -Body $finaljson -ContentType "application/json"
+write-host "Policy Created"
 
 
 
 ##Assign
+##Get ID
 $policyid = $addpolicy.id
+write-host "Policy ID $policyid"
+
+##Populate into URL
 $assignurl = "https://graph.microsoft.com/beta/deviceManagement/configurationPolicies('$policyid')/assign"
 
 
-
+##Populate JSON
 $jsonassign = @"
-
 {
 	"assignments": [
 		{
@@ -292,4 +300,7 @@ $jsonassign = @"
 }
 "@
 
+##Assign Policy
+write-host "Assigning Policy"
 Invoke-MgGraphRequest -method POST -Uri $assignurl -Body $jsonassign -ContentType "application/json"
+write-host "Policy Assigned"

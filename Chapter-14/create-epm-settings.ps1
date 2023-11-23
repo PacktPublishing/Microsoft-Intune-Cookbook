@@ -1,7 +1,11 @@
+##Set Variables
 $name = "Elevation Settings Policy"
 $description = "Elevation Settings Policy"
+
+##Set URL
 $policyuri = "https://graph.microsoft.com/beta/deviceManagement/configurationPolicies"
 
+##Populate JSON
 $policyjson = @"
 {
 	"description": "$description",
@@ -57,11 +61,20 @@ $policyjson = @"
 }
 "@
 
+
+##Create EPM policy
+write-host "Creating EPM Policy"
 $addpolicy = Invoke-MgGraphRequest -method POST -Uri $policyuri -Body $policyjson -ContentType "application/json" -OutputType PSObject
+write-host "Policy created"
 
+##Get Policy ID
 $policyid = $addpolicy.id
+write-host "Policy ID: $policyid"
 
+##Populate Assignment URL
 $policyassignuri = "https://graph.microsoft.com/beta/deviceManagement/configurationPolicies/$policyid/assign"
+
+##Populate JSON
 $policyassignjson = @"
 {
 	"assignments": [
@@ -73,4 +86,8 @@ $policyassignjson = @"
 	]
 }
 "@
+
+##Assign Policy
+write-host "Assigning Policy"
 Invoke-MgGraphRequest -Method POST -Uri $policyassignuri -Body $policyassignjson -ContentType "application/json"
+write-host "Policy Assigned"

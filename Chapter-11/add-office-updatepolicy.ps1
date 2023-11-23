@@ -1,3 +1,4 @@
+##Set Variables
 $name = "Update Ring"
 $description = "Office Updates for Monthly Enterprise"
 $groupid = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
@@ -11,8 +12,10 @@ $groupid = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
 ##Beta = insiderfast
 $channel = "monthlyenterprise"
 
+##Set URL
 $url  = "https://graph.microsoft.com/beta/deviceManagement/configurationPolicies"
 
+##Set JSON
 $json = @"
 {
 	"description": "$description",
@@ -61,11 +64,19 @@ $json = @"
 }
 "@
 
+##Create Profile
+write-host "Creating Profile"
 $updateprofile = Invoke-MgGraphRequest -Uri $url -Method POST -Body $json -ContentType "application/json" -OutputType PSObject
-$profileid = $updateprofile.id
+write-host "Profile Created"
 
+##Get Profile ID
+$profileid = $updateprofile.id
+write-host "Profile ID: $profileid"
+
+##Populate Assignment URL with ID
 $updateurl = "https://graph.microsoft.com/beta/deviceManagement/configurationPolicies/$profileid/assign"
 
+##Populate Assignment JSON
 $updatejson = @"
 {
 	"assignments": [
@@ -79,4 +90,7 @@ $updatejson = @"
 }
 "@
 
+##Assign Profile
+write-host "Assigning Profile"
 Invoke-MgGraphRequest -Method POST -Uri $updateurl -ContentType "application/json" -Body $updatejson
+write-host "Profile Assigned"

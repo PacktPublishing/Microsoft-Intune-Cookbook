@@ -1,3 +1,4 @@
+##Set Variables
 $DisplayName = "Clean Disk Space"
 $Description = "Clears if less than 15Gb free"
 $Publisher = "Your Name Here"
@@ -12,9 +13,11 @@ $ScheduleFrequency = "1"
 ##Start Time (if daily)
 $StartTime = "01:00"
 $groupid = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+
+##Set URL
 $url = "https://graph.microsoft.com/beta/deviceManagement/deviceHealthScripts"
 
-
+##Set Script Content
 $detectionscriptcontent = @'
 $storageThreshold = 15
 $utilization = (Get-PSDrive | Where {$_.name -eq "C"}).free
@@ -26,8 +29,11 @@ else{
     exit 1}
 '@
 
+##Convert to Base64
 $detectionbase64encoded = [System.Convert]::ToBase64String([System.Text.Encoding]::Unicode.GetBytes($detectionscriptcontent))
 
+
+##Set Remediation Content
 $remediationscriptcontent = @'
 $cleanupTypeSelection = 'Temporary Sync Files', 'Downloaded Program Files', 'Memory Dump Files', 'Recycle Bin'
 foreach ($keyName in $cleanupTypeSelection) {
@@ -43,8 +49,11 @@ foreach ($keyName in $cleanupTypeSelection) {
 Start-Process -FilePath CleanMgr.exe -ArgumentList '/sagerun:1' -NoNewWindow -Wait
 '@
 
+##Convert to Base64
 $remediationbase64encoded = [System.Convert]::ToBase64String([System.Text.Encoding]::Unicode.GetBytes($remediationscriptcontent))
 
+
+##Populate JSON
 $json = @"
 {
 	"description": "$description",
@@ -61,10 +70,16 @@ $json = @"
 }
 "@
 
+##Add Script
+write-host "Adding Script"
 $addscript = Invoke-MgGraphRequest -Uri $url -Method Post -Body $json -ContentType "application/json" -OutputType PSObject
+write-host "Script Added"
+
+##Get Script ID
 $scriptid = $addscript.id
+write-host "Script ID is $scriptid"
 
-
+##Check Schedule Type and Set JSON
 if($ScheduleType -eq "Daily"){
     $Schedule = @"
     "runSchedule": {
@@ -84,7 +99,11 @@ else{
 "@
 }
 
+
+##Populate ID into Assign JSON
 $assignurl = "https://graph.microsoft.com/beta/deviceManagement/deviceHealthScripts/$scriptid/assign"
+
+##Populate JSON
 $assignjson = @"
 {
 	"deviceHealthScriptAssignments": [
@@ -99,4 +118,8 @@ $assignjson = @"
 	]
 }
 "@
+
+##Assign Script
+write-host "Assigning Script"
 Invoke-MgGraphRequest -Uri $assignurl -Method Post -Body $assignjson -ContentType "application/json" -OutputType PSObject
+write-host "Script Assigned"

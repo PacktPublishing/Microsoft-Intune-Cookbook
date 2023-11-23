@@ -1,5 +1,7 @@
-
+##Set URL
 $url = "https://graph.microsoft.com/v1.0/identity/conditionalAccess/policies"
+
+##Set JSON
 $json = @'
 {
 	"conditions": {
@@ -66,10 +68,15 @@ $json = @'
 	"state": "disabled"
 }
 '@
-
+##Create policy
+write-host "Creating policy"
 Invoke-MgGraphRequest -Method POST -Uri $url -Body $json -ContentType "application/json" -OutputType PSObject
+write-host "Policy created"
 
+
+##Policy 2 - Set URL
 $url = "https://graph.microsoft.com/beta/identity/conditionalAccess/policies"
+##Policy 2 - Set JSON
 $json = @"
 {
 	"conditions": {
@@ -147,5 +154,8 @@ $json = @"
 }
 "@
 
+##Policy 2 - Create policy
+write-host "Creating policy"
 Invoke-MgGraphRequest -Method POST -Uri $url -Body $json -ContentType "application/json" -OutputType PSObject
+write-host "Policy created"
 

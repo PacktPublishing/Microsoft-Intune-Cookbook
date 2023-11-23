@@ -1,5 +1,4 @@
-
-
+##Set Variables
 $companyname = "Test"
 $contactTelephone = "1234"
 $contactEmail = "help@help"
@@ -9,13 +8,20 @@ $websitename = "Name"
 $privacyUrl = "https://microsoft.com"
 $additionalinfo = "More Here"
 
+##Set Image Path
 $imagepath = "PATH HERE"
+
+##Convert Image to Base64
 $imagebase64 = [System.Convert]::ToBase64String((Get-Content $imagepath -Encoding Byte))
 
+##Get Default Profile ID
+write-host "Getting Default Profile ID"
 $customid = (Invoke-MgGraphRequest -uri "https://graph.microsoft.com/beta/deviceManagement/intuneBrandingProfiles?`$filter=isDefaultProfile eq true" -method GET -OutputType PSObject).value.id
 
-
+##Set URL
 $url = "https://graph.microsoft.com/beta/deviceManagement/intuneBrandingProfiles('$customid')"
+
+##Populate JSON
 $json = @"
 {
 	"companyPortalBlockedActions": [
@@ -72,4 +78,7 @@ $json = @"
 }
 "@
 
+##Create Custom Profile
+write-host "Creating Custom Profile"
 Invoke-MgGraphRequest -Method PATCH -Uri $url -Body $json -ContentType "application/json" -OutputType PSObject
+write-host "Custom Profile Created"

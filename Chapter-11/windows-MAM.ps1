@@ -1,15 +1,26 @@
+##Enable Connector
+##Set URL
 $url = "https://graph.microsoft.com/beta/deviceManagement/mobileThreatDefenseConnectors"
+
+##Set JSON
 $threatjson = @"
 {
 	"windowsMobileApplicationManagementEnabled": true
 }
 "@
+
+##Enable Connector
+write-host "Enabling Connector"
 Invoke-MgGraphRequest -Method POST -Uri $url -Body $threatjson -ContentType "application/json" -OutputType PSObject
+write-host "Connector Enabled"
 
-
+##Set Group ID
 $groupid = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
 
+##Set URL for policy
 $url = "https://graph.microsoft.com/beta/deviceAppManagement/windowsManagedAppProtections"
+
+##Set JSON for policy
 $json = @"
 {
 	"@odata.type": "#microsoft.graph.windowsManagedAppProtection",
@@ -117,5 +128,8 @@ $json = @"
 }
 "@
 
+##Deploy policy
+write-host "Deploying policy"
 Invoke-MgGraphRequest -Method POST -Uri $url -Body $json -ContentType "application/json" -OutputType PSObject
+write-host "Policy deployed"
 

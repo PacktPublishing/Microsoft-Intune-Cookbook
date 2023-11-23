@@ -1,5 +1,9 @@
+
+##Set Variables
 $name = "ACME Only"
 $description = "ACME Only Devices"
+
+##Set Rule
 $rule = @"
 (device.deviceOwnership -eq \"Corporate\")
 "@
@@ -14,8 +18,13 @@ $rule = @"
 ## AndroidMobileApplicationManagement
 ## iOSMobileApplicationManagement
 
+##Set Platform
 $platform = "Windows10AndLater"
+
+##Set URL
 $url = "https://graph.microsoft.com/beta/deviceManagement/assignmentFilters"
+
+##Populate JSON
 $json = @"
 {
 	"description": "$description",
@@ -28,4 +37,7 @@ $json = @"
 }
 "@
 
+##Send request
+write-host "Creating filter"
 Invoke-MgGraphRequest -Uri $url -Method Post -body $json -ContentType "application/json"
+write-host "Filter created"
