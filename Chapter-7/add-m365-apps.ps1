@@ -56,5 +56,5 @@ $assignjson = @"
 
 ##Assign M365 App
 write-host "Assigning M365 App"
-Invoke-MgGraphRequest -Url $assignurl -Method Post -Body $assignjson -ContentType "application/json"
+Invoke-MgGraphRequest -Uri $assignurl -Method Post -Body $assignjson -ContentType "application/json"
 write-host "M365 App Assigned"

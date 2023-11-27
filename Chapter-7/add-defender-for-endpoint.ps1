@@ -57,5 +57,5 @@ $assignjson = @"
 
 ##Assign Mobile App
 write-host "Assigning Mobile App"
-Invoke-MgGraphRequest -Url $assignurl -Method Post -Body $assignjson -ContentType "application/json"
+Invoke-MgGraphRequest -Uri $assignurl -Method Post -Body $assignjson -ContentType "application/json"
 write-host "Mobile App Assigned"

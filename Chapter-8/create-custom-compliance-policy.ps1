@@ -3,7 +3,7 @@ $name = "Windows Custom Compliance"
 $description = "Checks Manufacturer, Firewall, Malware and Bitlocker"
 $publisher = "Publisher"
 $loggedonuser = "system"
-$runas32 = $false
+$runas32 = "false"
 
 ##Set URL
 $url = "https://graph.microsoft.com/beta/deviceManagement/deviceComplianceScripts"

@@ -13,7 +13,7 @@ $configscript = [System.Convert]::ToBase64String([System.Text.Encoding]::UTF8.Ge
 
 ##Get Filename from path
 write-host "Getting Filename"
-$filename = [System.IO.Path]::GetFileName($scriptpath)
+$filename = [System.IO.Path]::GetFileName($configpath)
 
 ##Populate JSON
 $json = @"

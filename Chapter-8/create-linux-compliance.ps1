@@ -1,7 +1,7 @@
 ##Set Variables
 $name = "Linux Compliance"
 $description = "Linux Compliance, non-custom"
-$groupid = "00000000-0000-0000-0000-000000000000"
+$groupid = "000000-0000-0000-0000-000000000000"
 
 ##Set URL
 $url = "https://graph.microsoft.com/beta/deviceManagement/compliancePolicies"
@@ -98,7 +98,7 @@ $policyid = $linuxpolicy.id
 write-host "Policy ID: $policyid"
 
 ##Populate ID into assignment URL
-$assignurl = "https://graph.microsoft.com/beta/deviceManagement/configurationPolicies/$policyid/assign"
+$assignurl = "https://graph.microsoft.com/beta/deviceManagement/compliancePolicies/$policyid/assign"
 
 ##Populate JSON Body
 $assignjson = @"

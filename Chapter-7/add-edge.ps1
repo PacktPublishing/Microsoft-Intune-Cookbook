@@ -58,5 +58,5 @@ $assignjson = @"
 
 ##Assign the app
 write-host "Assigning Edge Application"
-Invoke-MgGraphRequest -Url $assignurl -Method Post -Body $assignjson -ContentType "application/json"
+Invoke-MgGraphRequest -Uri $assignurl -Method Post -Body $assignjson -ContentType "application/json"
 write-host "Edge Application Assigned"
