@@ -4,7 +4,7 @@ $groupdescription = "TestGroupDescription"
 
 # Define the membership rule for devices with a physical ID containing "[ZTDID]"
 # Note: We have single quotes around the rule because we are using double quotes in the rule
-$membershiprule = '(device.devicePhysicalIDs -any (_ -contains "[ZTDID]"))'
+$membershiprule = '(device.devicePhysicalIDs -any (_ -startsWith "[ZTDid]"))'
 
 # Define the group nickname by removing all spaces and special characters from the group name and converting to lowercase
 $groupnickname = ($groupname -replace '[^a-zA-Z0-9]', '').ToLower()
