@@ -63,27 +63,3 @@ also a keen blogger and shares many scripts with the community.
 Living in the north-east of England with his wife and two children, Andrew is a two-time Microsoft
 MVP and holds many Microsoft certifications (13 at the time of writing). Outside of work and family
 time, he is a film fan and can often be found at the local cinema.
-
-****
-0
-
-****
-0
-
-****
-0
-
-****
-0
-
-## Other books by the authors
-* []()
-
-* []()
-
-* []()
-
-* []()
-
-* []()
-
