@@ -1,6 +1,6 @@
 # Microsoft Intune Cookbook
 
-<a href="https://www.packtpub.com/product/microsoft-intune-cookbook/9781805126546?utm_source=github&utm_medium=repository&utm_campaign="><img src="" alt="Microsoft Intune Cookbook" height="256px" align="right"></a>
+<a href="https://www.packtpub.com/product/microsoft-intune-cookbook/9781805126546?utm_source=github&utm_medium=repository&utm_campaign="><img src="https://content.packt.com/B19895/cover_image_small.jpg" alt="Microsoft Intune Cookbook" height="256px" align="right"></a>
 
 This is the code repository for [Microsoft Intune Cookbook](https://www.packtpub.com/product/microsoft-intune-cookbook/9781805126546?utm_source=github&utm_medium=repository&utm_campaign=), published by Packt.
 
@@ -45,8 +45,6 @@ With the following software and hardware list you can run all code files present
 | -------- | ------------------------------------ | ----------------------------------- |
 | 1-14 | PowerShell 5 or 7 | Windows, Mac OS X |
 | 1-14 | A web browser | Windows, Mac OS X, and Linux (Any) |
-
-We also provide a PDF file that has color images of the screenshots/diagrams used in this book. [Click here to download it](https://packt.link/free-ebook/9781805126546).
 
 ### Related products
 *  [[Packt]](https://www.packtpub.com/product/cloud-penetration-testing-for-red-teamers/9781803248486?utm_source=github&utm_medium=repository&utm_campaign=9781803248486) [[Amazon]](https://www.amazon.com/dp/1803248483)
