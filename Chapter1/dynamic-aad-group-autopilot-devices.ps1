@@ -22,7 +22,7 @@ $json = @"
     ],
     "mailEnabled": false,
     "mailNickname": "$groupnickname",
-    "membershipRule": $membershiprule,
+    "membershipRule": '$membershiprule',
     "membershipRuleProcessingState": "On",
     "securityEnabled": true
 }
