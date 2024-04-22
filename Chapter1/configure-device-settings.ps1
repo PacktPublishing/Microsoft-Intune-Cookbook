@@ -8,6 +8,8 @@ $azureadjoin = 1
 $mfa = 0
 # Set to False to block Bitlocker
 $bitlocker = "true"
+# Set to False to block LAPS
+$laps = "true"
 
 # Define the JSON settings for device registration
 $jsonsettings = @"
@@ -19,7 +21,10 @@ $jsonsettings = @"
     "description":"Tenant-wide policy that manages intial provisioning controls using quota restrictions, additional authentication and authorization checks",
     "userDeviceQuota":$devicequota,
     "azureADRegistration":{"appliesTo":"$azureadregister","allowedUsers":null,"allowedGroups":null,"isAdminConfigurable":false},
-    "azureADJoin":{"appliesTo":"$azureadjoin","allowedUsers":[],"allowedGroups":[],"isAdminConfigurable":true}
+    "azureADJoin":{"appliesTo":"$azureadjoin","allowedUsers":[],"allowedGroups":[],"isAdminConfigurable":true},
+	"localAdminPassword": {
+		"isEnabled": $laps
+	}
 }
 "@
 
