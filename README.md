@@ -1,3 +1,6 @@
+
+###<b><p align='center'>[![Packt Sale](https://hub.packtpub.com/wp-content/uploads/2023/08/put-generative-ai-to-work-packt.png)](https://packt.link/JGIEY)</p></b>Get this book on sale at Packt.
+
 # Microsoft Intune Cookbook
 
 <a href="https://www.packtpub.com/product/microsoft-intune-cookbook/9781805126546?utm_source=github&utm_medium=repository&utm_campaign="><img src="https://content.packt.com/B19895/cover_image_small.jpg" alt="Microsoft Intune Cookbook" height="256px" align="right"></a>
