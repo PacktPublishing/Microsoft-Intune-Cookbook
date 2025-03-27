@@ -2,7 +2,7 @@
 
 | AskAresh | [https://askaresh.com](https://askaresh.com/) |  
 | Think Deploy Blog | [https://blog.lenovocdrt.com/](https://blog.lenovocdrt.com/) |  
-| Hailey Phillips | [https://www.allwayshype.com/](https://www.allwayshype.com/) | 
+| Hailey Phillips | [https://www.allwayshype.com/](https://www.allwayshype.com/) |  
 | MINDCORE BLOG | [https://blog.mindcore.dk/](https://blog.mindcore.dk/) |  
 | sky made simple | [https://blog.skymadesimple.io/](https://blog.skymadesimple.io/) |  
 | Thomas Marcussen | [https://blog.thomasmarcussen.com/](https://blog.thomasmarcussen.com/) |  
